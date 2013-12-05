@@ -1,0 +1,15 @@
+<h2>Category</h2>
+
+<form {{action save on="submit"}}>
+  
+  <p>
+    <label for="title">Title</label><br>
+    {{view Ember.TextField valueBinding="title" id="title"}}
+  </p>
+  
+  <p>
+    <button type="submit">Save</button>
+  </p>
+
+</form>
+

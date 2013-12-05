@@ -1,0 +1,19 @@
+<h2>Categories</h2>
+
+{{#linkTo "new_category"}}New Category{{/linkTo}}
+
+<table>
+  <thead>
+    <th>title</th>
+  </thead>
+  <tbody>
+    {{#each category in controller}}
+    <tr>
+      <td>{{ category.title }}</td>
+      <td>{{#linkTo "category" category }}view{{/linkTo}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+

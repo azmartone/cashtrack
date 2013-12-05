@@ -1,0 +1,17 @@
+<h2>Transaction</h2>
+
+<p>
+  <b>Description:</b> {{ description }}
+</p>
+
+<p>
+  <b>Amount:</b> {{ amount }}
+</p>
+
+<p>
+  <b>Category:</b> {{ category }}
+</p>
+
+{{#linkTo "transactions"}}←All Transactions{{/linkTo}}
+{{#linkTo "edit_transaction" model}}Edit{{/linkTo}}
+<a href="#" {{action "destroy"}}>Destroy</a>
