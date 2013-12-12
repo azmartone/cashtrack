@@ -163,9 +163,9 @@ module.exports = App;
 },{"./config/app":1,"./config/routes":2,"./controllers/category_controller":4,"./controllers/edit_category_controller":5,"./controllers/edit_transaction_controller":6,"./controllers/new_category_controller":7,"./controllers/new_transaction_controller":8,"./controllers/transaction_controller":9,"./models/category":11,"./models/transaction":12,"./routes/categories_route":13,"./routes/new_category_route":14,"./routes/new_transaction_route":15,"./routes/transactions_route":16,"./templates":17}],11:[function(require,module,exports){
 var Category = DS.Model.extend({
 
-  title: DS.attr('string'),
-  
-  transaction: DS.belongsTo('transaction')
+  title: DS.attr('string')
+
+  // transaction: DS.belongsTo('transaction')
 
 });
 
@@ -179,7 +179,9 @@ var Transaction = DS.Model.extend({
 
   amount: DS.attr('number'),
 
-  category: DS.belongsTo('category')
+
+  category: DS.attr('string')
+  // category: DS.belongsTo('category')
 
 });
 
@@ -243,6 +245,11 @@ var NewTransactionRoute = Ember.Route.extend({
     if (!model.get('isSaving')) {
       model.deleteRecord();
     }
+  },
+
+  setupController:function(controller,model) {
+     this._super(controller,model);
+     controller.set('transactionCategories',App.Category.find());
   }
 
 });
@@ -434,11 +441,14 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
     'id': ("amount")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n  </p>\n  \n  <p>\n    <label for=\"category\">Category</label><br>\n    ");
-  hashContexts = {'valueBinding': depth0,'id': depth0};
-  hashTypes = {'valueBinding': "STRING",'id': "STRING"};
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.TextField", {hash:{
-    'valueBinding': ("category"),
-    'id': ("category")
+  hashContexts = {'contentBinding': depth0,'optionValuePath': depth0,'optionLabelPath': depth0,'selectionBinding': depth0,'class': depth0};
+  hashTypes = {'contentBinding': "STRING",'optionValuePath': "STRING",'optionLabelPath': "STRING",'selectionBinding': "STRING",'class': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
+    'contentBinding': ("controller.transactionCategories"),
+    'optionValuePath': ("content.id"),
+    'optionLabelPath': ("content.title"),
+    'selectionBinding': ("category"),
+    'class': ("input-medium")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n  </p>\n  \n  <p>\n    <button type=\"submit\">Save</button>\n  </p>\n\n</form>\n\n");
   return buffer;

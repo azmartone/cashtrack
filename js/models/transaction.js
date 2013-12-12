@@ -4,7 +4,9 @@ var Transaction = DS.Model.extend({
 
   amount: DS.attr('number'),
 
-  category: DS.belongsTo('category')
+
+  category: DS.attr('string')
+  // category: DS.belongsTo('category')
 
 });
 

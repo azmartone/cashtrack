@@ -14,7 +14,12 @@
   
   <p>
     <label for="category">Category</label><br>
-    {{view Ember.TextField valueBinding="category" id="category"}}
+    {{view Ember.Select
+        contentBinding="controller.transactionCategories"
+        optionValuePath="content.id"
+        optionLabelPath="content.title"
+        selectionBinding="category"
+        class="input-medium"}}
   </p>
   
   <p>

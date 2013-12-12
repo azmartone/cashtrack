@@ -15,6 +15,11 @@ var NewTransactionRoute = Ember.Route.extend({
     if (!model.get('isSaving')) {
       model.deleteRecord();
     }
+  },
+
+  setupController:function(controller,model) {
+     this._super(controller,model);
+     controller.set('transactionCategories',App.Category.find());
   }
 
 });

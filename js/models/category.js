@@ -1,8 +1,8 @@
 var Category = DS.Model.extend({
 
-  title: DS.attr('string'),
-  
-  transaction: DS.belongsTo('transaction')
+  title: DS.attr('string')
+
+  // transaction: DS.belongsTo('transaction')
 
 });
 
